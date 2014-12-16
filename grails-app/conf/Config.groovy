@@ -94,7 +94,7 @@ environments {
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
-performace.analysis.enabled = false
+performace.analysis.enabled = true
 
 // log4j configuration
 log4j.main = {
