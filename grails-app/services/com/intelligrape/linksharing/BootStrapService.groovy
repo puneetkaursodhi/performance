@@ -63,9 +63,9 @@ class BootStrapService {
     }
 
     private addTopicAndSubscribe(String title, String description, Visibility visibility, User user) {
-        Topic topic = new Topic(title: title, description: description, creator: user, visibility: visibility).save()
+        Topic topic = new Topic(title: title, description: description, creator: user, visibility: visibility).save(failOnError: true)
         if (topic) {
-            new Subscription(seriousness: Seriousness.VERY_SERIOUS, subscriber: user, topic: topic).save()
+            new Subscription(seriousness: Seriousness.VERY_SERIOUS, subscriber: user, topic: topic).save(failOnError: true)
         }
 
     }
@@ -77,7 +77,7 @@ class BootStrapService {
                 10.times {
                     LinkResource linkResource = new LinkResource(title: "This is resource for topic ${topic.title}  ${it} - by ${topic.creator.firstName}",
                             description: "popping and locking", url: "http://google.com", creator: topic.creator, topic: topic)
-                    if (linkResource.save()) {
+                    if (linkResource.save(failOnError: true)) {
                         new ReadStatus(reader: topic.creator, resource: linkResource).save()
                     }
                 }
@@ -91,7 +91,7 @@ class BootStrapService {
         users.each { User user ->
             List<Topic> topicList = Topic.findAllByCreatorNotEqual(user, [max: 2, offset: 0])
             topicList.each { Topic topic ->
-                new Subscription(seriousness: Seriousness.VERY_SERIOUS, subscriber: user, topic: topic).save()
+                new Subscription(seriousness: Seriousness.VERY_SERIOUS, subscriber: user, topic: topic).save(failOnError: true)
             }
 
         }
