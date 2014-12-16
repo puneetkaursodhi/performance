@@ -126,6 +126,8 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.intelligra
 grails.plugin.springsecurity.authority.className = 'com.intelligrape.linksharing.Role'
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/homePage' //''/category.html'
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/'
+grails.plugin.springsecurity.logout.postOnly = false
 
 grails.plugin.springsecurity.roleHierarchy = '''
 ROLE_ADMIN > ROLE_USER

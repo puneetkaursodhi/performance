@@ -7,6 +7,6 @@ import grails.plugin.springsecurity.annotation.Secured
 class HomePageController {
 
     def index() {
-        render "I am logged in"
+
     }
 }
