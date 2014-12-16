@@ -5,6 +5,7 @@ class ApplicationTagLib {
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = "ls"
     def springSecurityService
+    def cacheService
 
     def showCreatedTopicsCount = { attrs ->
         User user = springSecurityService.currentUser as User
@@ -16,14 +17,14 @@ class ApplicationTagLib {
     }
 
     def showTotalTopicsCount = { attrs ->
-       out << Topic.count()
+        out << Topic.count()
     }
 
     def showSubscribedTopicsCount = { attrs ->
         User user = springSecurityService.currentUser as User
         Integer totalCount = 0
         if (user) {
-            totalCount = Subscription.countBySubscriber(user)
+            totalCount = cacheService.getSubscribedTopicsCount(user)
         }
         out << totalCount
     }
