@@ -32,22 +32,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Bootstrap theme</a>
+            <a class="navbar-brand" href="#">Performance demo</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="${createLink(controller: 'homePage')}">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">Topic <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="${createLink(controller:'topic')}"> List Topic</a></li>
+                    <li><a href="${createLink(controller: 'topic',action: 'create')}"> Create Topic</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-expanded="false">Topic Stats <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Total Topics : <ls:showTotalTopicsCount/></a></li>
                         %{--<cache:block><li><a href="#">Total Topics : <ls:showTotalTopicsCount/></a></li></cache:block>--}%
-                        <li><a
-                                href="#">Total Created Topics : <ls:showCreatedTopicsCount/></a></li>
+                        <li><a href="#">Total Created Topics : <ls:showCreatedTopicsCount/></a></li>
                         %{--<cache:block key="${sec.loggedInUserInfo(field: 'id')}"><li><a--}%
                         %{--href="#">Total Created Topics : <ls:showCreatedTopicsCount/></a></li></cache:block>--}%
                         <li><a href="#">Total Subscribed Topics : <ls:showSubscribedTopicsCount/></a></li>

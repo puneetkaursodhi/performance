@@ -3,6 +3,8 @@ package com.intelligrape.linksharing
 import com.intelligrape.linksharing.enums.Visibility
 
 class Topic {
+    transient def grailsCacheAdminService
+
     String title
     String description
     Visibility visibility
@@ -19,5 +21,9 @@ class Topic {
         title(blank: false, unique: true)
         description(blank: false, maxSize: 1024)
 
+    }
+
+    def afterInsert(){
+//        grailsCacheAdminService.clearBlocksCache()
     }
 }
